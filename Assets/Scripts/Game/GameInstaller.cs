@@ -24,7 +24,9 @@ namespace Game
 			
 			_systems = new Feature("Game").
 				Add(new PlayerInitializeSystem(_context)).
-				Add(new AddPlayerViewSystem(_context));
+				Add(new AddPlayerViewSystem(_context)).
+				Add(new PlayerMoveSystem(_context.game)).
+				Add(new GameEventSystems(_context));
 			
 			_systems.Initialize();
 			

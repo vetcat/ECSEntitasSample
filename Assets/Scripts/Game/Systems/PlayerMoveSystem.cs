@@ -9,7 +9,7 @@ namespace Game.Systems
 		
 		public PlayerMoveSystem(GameContext context)
 		{
-			_group = context.GetGroup(GameMatcher.AllOf(GameMatcher.Speed, GameMatcher.Position));
+			_group = context.GetGroup(GameMatcher.AllOf(GameMatcher.Position, GameMatcher.Player));
 		}		
 
 		public void Execute()
@@ -25,6 +25,8 @@ namespace Game.Systems
 			foreach (var entity in _group)
 			{
 				//Debug.Log("[MoveSystem] Value = " + entity.movement.Value + "; deltaTime = " + deltaTime);
+				var pos = entity.position.Value + Vector3.forward * deltaTime;				
+				entity.ReplacePosition(pos);
 			}
 		}
 	}
