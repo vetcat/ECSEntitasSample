@@ -33,7 +33,7 @@ namespace Game.Systems
 			foreach (var entity in entities)
 			{
 				var player = GameObject.Instantiate(playerPrefab);
-				//player.transform.position = entity.position.Value;
+				
 				var link = player.GetComponent<ILinkable>();
 				link.Link(_contexts.game, entity);
 			}

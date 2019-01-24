@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Game
+namespace Game.Views
 {
 	public interface ILinkable
 	{
