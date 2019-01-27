@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Views
 {
-	public class PlayerView : MonoBehaviour, ILinkable, IPositionListener
+	public class PlayerView : MonoBehaviour, IView, ILinkable, IPositionListener
 	{
 		private CharacterController _characterController;
 		private void Awake()
@@ -28,6 +28,11 @@ namespace Game.Views
 		public void OnPosition(GameEntity entity, Vector3 value)
 		{
 			transform.position = value;
+		}
+
+		public Vector3 GetRealPosition()
+		{
+			return transform.position;
 		}
 	}
 }

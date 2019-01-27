@@ -5,9 +5,7 @@ using Game.Systems;
 namespace Game
 {
 	public class GameInstaller : MonoInstaller
-	{
-		public Globals Globals;
-		
+	{				
 		private Entitas.Systems _systems;
 		private Contexts _context;
 		private PlayerMoveSystem _playerMoveSystem;		
@@ -18,21 +16,21 @@ namespace Game
 		}
 
 		public override void Start()
-		{					
+		{
+			var settings = Resources.Load("GameSettings") as GameSettings;
+			
 			_context = new Contexts();
-			_context.game.SetGlobals(Globals);
+			_context.game.SetGameSettings(settings);
+			_context.game.SetDeltaTime(0f);
 			
 			_systems = new Feature("Game").
-				Add(new PlayerInitializeSystem(_context)).
-				Add(new AddPlayerViewSystem(_context)).
+				Add(new InitializeSystem(_context)).
+				Add(new DeltaTimeUpdateSystem(_context.game)).
+				Add(new AddPlayerViewReactiveSystem(_context)).				
 				Add(new PlayerMoveSystem(_context.game)).
 				Add(new GameEventSystems(_context));
 			
 			_systems.Initialize();
-			
-			//add
-			//var entity = _systems.CreateEntity();
-			//entity.AddMovement(10, new ReactiveProperty<float>(20));
 		}
 
 		public override void Update()

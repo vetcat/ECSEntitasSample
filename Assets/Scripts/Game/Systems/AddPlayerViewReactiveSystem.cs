@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Game.Systems
 {
-	public class AddPlayerViewSystem : ReactiveSystem<GameEntity>
+	public class AddPlayerViewReactiveSystem : ReactiveSystem<GameEntity>
 	{
 		private Contexts _contexts;
 
-		public AddPlayerViewSystem(Contexts contexts) : base(contexts.game)
+		public AddPlayerViewReactiveSystem(Contexts contexts) : base(contexts.game)
 		{			
 			_contexts = contexts;
 		}
@@ -28,7 +28,7 @@ namespace Game.Systems
 		protected override void Execute(List<GameEntity> entities)
 		{			
 			//todo перевести на pool Zenject
-			var playerPrefab = _contexts.game.globals.value.PlayerPrefab;
+			var playerPrefab = _contexts.game.gameSettings.value.PlayerPrefab;
 
 			foreach (var entity in entities)
 			{
@@ -36,6 +36,9 @@ namespace Game.Systems
 				
 				var link = player.GetComponent<ILinkable>();
 				link.Link(_contexts.game, entity);
+
+				var view = player.GetComponent<IView>();
+				entity.AddView(view);
 			}
 		}
 	}
