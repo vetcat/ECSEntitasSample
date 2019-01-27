@@ -9,6 +9,7 @@ namespace Game
 		{
 			var entity = contexts.game.CreateEntity();
 			entity.AddPosition(position);
+			entity.AddSpeed(contexts.game.gameSettings.value.PlayerSpeed);
 			entity.isPlayer = true;
 			
 			return entity; 

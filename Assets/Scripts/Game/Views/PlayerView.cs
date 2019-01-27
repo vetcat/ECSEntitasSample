@@ -22,7 +22,7 @@ namespace Game.Views
 		public void Destroy()
 		{
 			gameObject.Unlink();
-			Destroy(this.gameObject);
+			Destroy(gameObject);
 		}
 
 		public void OnPosition(GameEntity entity, Vector3 value)
@@ -30,9 +30,14 @@ namespace Game.Views
 			transform.position = value;
 		}
 
-		public Vector3 GetRealPosition()
+		public Vector3 GetPosition()
 		{
 			return transform.position;
+		}
+
+		public Quaternion GetRotation()
+		{
+			return transform.rotation;
 		}
 	}
 }

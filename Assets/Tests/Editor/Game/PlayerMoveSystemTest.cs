@@ -42,9 +42,10 @@ namespace Tests.Editor.Game
 		{
 			_player.ReplacePosition(Vector3.zero);
 			float dt = 1f;
-			_context.game.deltaTime.Value = dt;									
-			
-			var finalPosition = _player.position.Value + Vector3.forward * dt;
+			_context.game.deltaTime.Value = dt;
+
+			var speed = _context.game.gameSettings.value.PlayerSpeed;
+			var finalPosition = _player.position.Value + Vector3.forward * dt * speed;
 			_systems.Execute();
 
 			Assert.AreEqual(_player.position.Value, finalPosition);
@@ -53,8 +54,16 @@ namespace Tests.Editor.Game
 		[Test]
 		public void Equal_Position_to_RealPosition()
 		{						
+			Vector3 newPosition = new Vector3(10f, 10f, 10f);
+			_player.ReplacePosition(newPosition);
+			_systems.Execute();
+			
 			var view = _player.view.Value;
-			Assert.AreEqual(view.GetRealPosition(), _player.position.Value);			
+			
+			Assert.AreEqual(view.GetPosition(), _player.position.Value);
+			
+			Assert.AreEqual(view.GetPosition(), newPosition);
+			Assert.AreEqual(_player.position.Value, newPosition);
 		}
 	}
 }

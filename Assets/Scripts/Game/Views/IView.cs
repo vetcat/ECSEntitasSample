@@ -4,6 +4,8 @@ namespace Game.Views
 {
 	public interface IView
 	{
-		Vector3 GetRealPosition();
+		void Destroy();
+		Vector3 GetPosition();
+		Quaternion GetRotation();
 	}
 }
