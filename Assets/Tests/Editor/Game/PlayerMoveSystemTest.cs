@@ -24,7 +24,7 @@ namespace Tests.Editor.Game
 			_context.game.SetDeltaTime(0f);
 			_context.game.SetGameSettings(settings);
 						
-			_playerMoveSystem = new PlayerMoveSystem(_context.game);
+			_playerMoveSystem = new PlayerMoveSystem(_context.game, _context.input);
 			_gameEventSystems = new GameEventSystems(_context);
 			_addPlayerViewReactiveSystem = new AddPlayerViewReactiveSystem(_context);
 			
@@ -58,7 +58,7 @@ namespace Tests.Editor.Game
 			_player.ReplacePosition(newPosition);
 			_systems.Execute();
 			
-			var view = _player.view.Value;
+			var view = _player.playerView.Value;
 			
 			Assert.AreEqual(view.GetPosition(), _player.position.Value);
 			

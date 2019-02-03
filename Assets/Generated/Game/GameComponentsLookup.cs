@@ -11,9 +11,9 @@ public static class GameComponentsLookup {
     public const int DeltaTime = 0;
     public const int Health = 1;
     public const int Player = 2;
-    public const int Position = 3;
-    public const int Speed = 4;
-    public const int View = 5;
+    public const int PlayerView = 3;
+    public const int Position = 4;
+    public const int Speed = 5;
     public const int GameSettings = 6;
     public const int HealthListener = 7;
     public const int PositionListener = 8;
@@ -24,9 +24,9 @@ public static class GameComponentsLookup {
         "DeltaTime",
         "Health",
         "Player",
+        "PlayerView",
         "Position",
         "Speed",
-        "View",
         "GameSettings",
         "HealthListener",
         "PositionListener"
@@ -36,9 +36,9 @@ public static class GameComponentsLookup {
         typeof(Game.Components.DeltaTimeComponent),
         typeof(Game.Components.HealthComponent),
         typeof(Game.Components.PlayerComponent),
+        typeof(Game.Components.PlayerViewComponent),
         typeof(Game.Components.PositionComponent),
         typeof(Game.Components.SpeedComponent),
-        typeof(Game.Components.ViewComponent),
         typeof(GameSettingsComponent),
         typeof(HealthListenerComponent),
         typeof(PositionListenerComponent)
