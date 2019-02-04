@@ -5,11 +5,11 @@ namespace Game
 {
 	public static class EntitiesFactory
 	{
-		public static Entity CreatePlayer(Contexts contexts, Vector3 position)
+		public static Entity CreatePlayer(Contexts contexts, Vector3 position, Vector3 forward)
 		{
 			var entity = contexts.game.CreateEntity();
-			entity.AddPosition(position);
-			entity.AddSpeed(contexts.game.gameSettings.value.PlayerSpeed);
+			entity.AddRotation(forward);
+			entity.AddPosition(position);						
 			entity.isPlayer = true;
 			
 			return entity; 

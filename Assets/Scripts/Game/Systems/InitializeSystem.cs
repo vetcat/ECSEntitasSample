@@ -14,8 +14,10 @@ namespace Game.Systems
 
 		public void Initialize()
 		{
-			Debug.Log("[InitializeSystem] Initialize");						
-			EntitiesFactory.CreatePlayer(_contexts, Vector3.zero);
+			Debug.Log("[InitializeSystem] Initialize");
+			var position = Vector3.zero;
+			var forward = Vector3.zero;
+			EntitiesFactory.CreatePlayer(_contexts, position, forward);
 		}
 	}
 }

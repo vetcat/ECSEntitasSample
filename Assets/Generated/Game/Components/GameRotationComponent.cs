@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Game.Components.SpeedComponent speed { get { return (Game.Components.SpeedComponent)GetComponent(GameComponentsLookup.Speed); } }
-    public bool hasSpeed { get { return HasComponent(GameComponentsLookup.Speed); } }
+    public Game.Components.RotationComponent rotation { get { return (Game.Components.RotationComponent)GetComponent(GameComponentsLookup.Rotation); } }
+    public bool hasRotation { get { return HasComponent(GameComponentsLookup.Rotation); } }
 
-    public void AddSpeed(float newValue) {
-        var index = GameComponentsLookup.Speed;
-        var component = CreateComponent<Game.Components.SpeedComponent>(index);
+    public void AddRotation(UnityEngine.Vector3 newValue) {
+        var index = GameComponentsLookup.Rotation;
+        var component = CreateComponent<Game.Components.RotationComponent>(index);
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceSpeed(float newValue) {
-        var index = GameComponentsLookup.Speed;
-        var component = CreateComponent<Game.Components.SpeedComponent>(index);
+    public void ReplaceRotation(UnityEngine.Vector3 newValue) {
+        var index = GameComponentsLookup.Rotation;
+        var component = CreateComponent<Game.Components.RotationComponent>(index);
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveSpeed() {
-        RemoveComponent(GameComponentsLookup.Speed);
+    public void RemoveRotation() {
+        RemoveComponent(GameComponentsLookup.Rotation);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSpeed;
+    static Entitas.IMatcher<GameEntity> _matcherRotation;
 
-    public static Entitas.IMatcher<GameEntity> Speed {
+    public static Entitas.IMatcher<GameEntity> Rotation {
         get {
-            if (_matcherSpeed == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Speed);
+            if (_matcherRotation == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Rotation);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSpeed = matcher;
+                _matcherRotation = matcher;
             }
 
-            return _matcherSpeed;
+            return _matcherRotation;
         }
     }
 }

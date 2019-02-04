@@ -25,6 +25,7 @@ namespace Game
 				Add(new DeltaTimeUpdateSystem(_context.game)).
 				Add(new InputStateStandartSystem(_context.input)).								
 				Add(new PlayerMoveSystem(_context.game, _context.input)).
+				Add(new PlayerRotationSystem(_context.game, _context.input)).
 				Add(new GameEventSystems(_context));
 			
 			_systems.Initialize();

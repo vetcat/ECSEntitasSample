@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Views
 {
-	public class PlayerView : MonoBehaviour, IPlayerView, ILinkable, IPositionListener
+	public class PlayerView : MonoBehaviour, IPlayerView, ILinkable, IPositionListener, IRotationListener
 	{
 		private CharacterController _characterController;
 		private void Awake()
@@ -17,6 +17,7 @@ namespace Game.Views
 			gameObject.Link(entity, context);
 			var e = (GameEntity) entity;
 			e.AddPositionListener(this);
+			e.AddRotationListener(this);
 		}
 
 		public void Destroy()
@@ -28,6 +29,11 @@ namespace Game.Views
 		public void OnPosition(GameEntity entity, Vector3 value)
 		{
 			transform.position = value;
+		}
+		
+		public void OnRotation(GameEntity entity, Vector3 value)
+		{			
+			transform.Rotate(value);			
 		}
 
 		public Vector3 GetPosition()

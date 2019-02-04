@@ -7,6 +7,7 @@ namespace Game
 	public class GameSettings : ScriptableObject
 	{
 		public GameObject PlayerPrefab;
-		public float PlayerSpeed = 5f;
+		public float PlayerMoveSpeed = 5f;// meters per second
+		public float PlayerRotationSpeed = 180f; //degrees per second
 	}
 }
