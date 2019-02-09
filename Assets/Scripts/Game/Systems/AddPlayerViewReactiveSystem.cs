@@ -39,6 +39,9 @@ namespace Game.Systems
 
 				var view = player.GetComponent<IPlayerView>();
 				entity.AddPlayerView(view);
+				
+				entity.ReplacePosition(entity.position.Value);
+				entity.ReplaceRotation(entity.rotation.Value);
 			}
 		}
 	}

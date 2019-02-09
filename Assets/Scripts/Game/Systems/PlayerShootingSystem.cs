@@ -27,21 +27,14 @@ namespace Game.Systems
                 {
                     if (entity.shooting.IsFirstTimeShot)
                     {
-                        //var firePoint = model.CurrentWeaponView.GetFirePoint();
-                        var firePoint = Vector3.zero;
-                        //Fire(model.CurrentWeaponView.FireRate, firePoint.position, firePoint.forward);
-                        EntitiesFactory.CreateShot(_gameContext, firePoint, firePoint);
-                        Debug.Log("CreateShot");
+                        CreateShot(entity, _gameContext);
                         entity.ReplaceShooting(0f, false);                        
                     }
 
                     entity.shooting.DurationTime += deltaTime;
                     if (entity.shooting.DurationTime >= fireRate)
                     {
-                        //var firePoint = model.CurrentWeaponView.GetFirePoint();
-                        var firePoint = Vector3.zero;
-                        EntitiesFactory.CreateShot(_gameContext, firePoint, firePoint);
-                        Debug.Log("CreateShot");
+                        CreateShot(entity, _gameContext);
                         entity.shooting.DurationTime -= fireRate;
                     }
                 }
@@ -54,6 +47,14 @@ namespace Game.Systems
                         entity.shooting.IsFirstTimeShot = true;
                 }
             }
+        }
+
+        private void CreateShot(GameEntity entity, GameContext gameContext)
+        {
+            var firePoint = entity.playerView.Value.GetPosition();
+            var fireForward = entity.playerView.Value.GetRotation();            
+            //EntitiesFactory.CreateShot(gameContext, firePoint, fireForward.eulerAngles);
+            EntitiesFactory.CreateShot(gameContext, firePoint, Vector3.zero);
         }
     }
 }

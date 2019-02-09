@@ -37,7 +37,10 @@ namespace Game.Systems
                 link.Link(_contexts.game, entity);
 
                 var view = shot.GetComponent<IView>();
-                entity.AddView(view);                
+                entity.AddView(view);
+                
+                entity.ReplacePosition(entity.position.Value);
+                entity.ReplaceRotation(entity.rotation.Value);
             }
         }
     }

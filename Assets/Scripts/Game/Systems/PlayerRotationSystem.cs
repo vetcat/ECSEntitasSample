@@ -23,7 +23,7 @@ namespace Game.Systems
                 var speed = _gameContext.gameSettings.value.PlayerRotationSpeed;
                 var deltaTime = _gameContext.deltaTime.Value;
                 var rotation = _inputContext.inputState.Horizontal * speed * deltaTime;
-                
+
                 entity.ReplaceRotation(new Vector3(0f, rotation, 0f));                
             }
         }
