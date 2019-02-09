@@ -14,12 +14,15 @@ public static class GameComponentsLookup {
     public const int PlayerView = 3;
     public const int Position = 4;
     public const int Rotation = 5;
-    public const int GameSettings = 6;
-    public const int HealthListener = 7;
-    public const int PositionListener = 8;
-    public const int RotationListener = 9;
+    public const int Shooting = 6;
+    public const int Shot = 7;
+    public const int View = 8;
+    public const int GameSettings = 9;
+    public const int HealthListener = 10;
+    public const int PositionListener = 11;
+    public const int RotationListener = 12;
 
-    public const int TotalComponents = 10;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "DeltaTime",
@@ -28,6 +31,9 @@ public static class GameComponentsLookup {
         "PlayerView",
         "Position",
         "Rotation",
+        "Shooting",
+        "Shot",
+        "View",
         "GameSettings",
         "HealthListener",
         "PositionListener",
@@ -41,6 +47,9 @@ public static class GameComponentsLookup {
         typeof(Game.Components.PlayerViewComponent),
         typeof(Game.Components.PositionComponent),
         typeof(Game.Components.RotationComponent),
+        typeof(Game.Components.ShootingComponent),
+        typeof(Game.Components.ShotComponent),
+        typeof(Game.Components.ViewComponent),
         typeof(GameSettingsComponent),
         typeof(HealthListenerComponent),
         typeof(PositionListenerComponent),

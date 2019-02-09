@@ -33,7 +33,7 @@ public class PlayerRotationSystemTest
 			.Add(_playerRotationSystem)
 			.Add(_gameEventSystems);	
 		
-		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context, Vector3.zero, Vector3.zero);
+		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Vector3.zero);
 		_systems.Execute();
 	}
 

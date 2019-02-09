@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 9192829831053692560, guid: ed752dc7ed890c44785269e0ac2382fc,
     type: 3}
+  ShotPrefab: {fileID: 1662362962918026418, guid: de21d1e10e915d14aa37d0694017ca91,
+    type: 3}
+  PlayerMoveSpeed: 5
+  PlayerRotationSpeed: 180
+  ShotMoveSpeed: 10

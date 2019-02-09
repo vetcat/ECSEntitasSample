@@ -27,7 +27,7 @@ namespace Game.Systems
 
 		protected override void Execute(List<GameEntity> entities)
 		{			
-			//todo перевести на pool Zenject
+			//todo перевести на pool
 			var playerPrefab = _contexts.game.gameSettings.value.PlayerPrefab;
 
 			foreach (var entity in entities)

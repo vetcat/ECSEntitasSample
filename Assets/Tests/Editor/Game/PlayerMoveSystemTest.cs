@@ -31,7 +31,7 @@ public class PlayerMoveSystemTest
 			.Add(_playerMoveSystem)
 			.Add(_gameEventSystems);	
 		
-		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context, Vector3.zero, Vector3.zero);
+		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Vector3.zero);
 		_systems.Execute();
 	}
 

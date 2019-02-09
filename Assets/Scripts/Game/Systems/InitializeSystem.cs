@@ -17,7 +17,7 @@ namespace Game.Systems
 			Debug.Log("[InitializeSystem] Initialize");
 			var position = Vector3.zero;
 			var forward = Vector3.zero;
-			EntitiesFactory.CreatePlayer(_contexts, position, forward);
+			EntitiesFactory.CreatePlayer(_contexts.game, position, forward);			
 		}
 	}
 }
