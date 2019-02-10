@@ -6,6 +6,7 @@ namespace Game.Views
     {
         void Destroy();
         Vector3 GetPosition();
+        Vector3 GetForward();
         Quaternion GetRotation();
         Vector3 TransformDirection(Vector3 dir);
         void SimpleMove(Vector3 velocity);

@@ -31,6 +31,8 @@ namespace Game
 				Add(new PlayerRotationSystem(_context.game, _context.input)).
 				Add(new PlayerShootingSystem(_context.game, _context.input)).
 				
+				Add(new ShotsMoveSystem(_context.game)).
+				
 				Add(new GameEventSystems(_context));
 			
 			_systems.Initialize();

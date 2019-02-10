@@ -52,9 +52,8 @@ namespace Game.Systems
         private void CreateShot(GameEntity entity, GameContext gameContext)
         {
             var firePoint = entity.playerView.Value.GetPosition();
-            var fireForward = entity.playerView.Value.GetRotation();            
-            //EntitiesFactory.CreateShot(gameContext, firePoint, fireForward.eulerAngles);
-            EntitiesFactory.CreateShot(gameContext, firePoint, Vector3.zero);
+            var fireForward = entity.playerView.Value.GetForward();            
+            EntitiesFactory.CreateShot(gameContext, firePoint, fireForward);         
         }
     }
 }

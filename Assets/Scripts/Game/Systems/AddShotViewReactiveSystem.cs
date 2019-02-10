@@ -38,9 +38,12 @@ namespace Game.Systems
 
                 var view = shot.GetComponent<IView>();
                 entity.AddView(view);
+
+                var shotView = shot.GetComponent<ShotView>();
+                entity.AddShotView(shotView);
                 
-                entity.ReplacePosition(entity.position.Value);
-                entity.ReplaceRotation(entity.rotation.Value);
+                view.SetPosition(entity.position.Value);
+                view.SetForward(entity.rotation.Value);
             }
         }
     }

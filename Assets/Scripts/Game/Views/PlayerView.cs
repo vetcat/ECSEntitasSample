@@ -41,6 +41,11 @@ namespace Game.Views
 			return transform.position;
 		}
 
+		public Vector3 GetForward()
+		{
+			return transform.forward;
+		}
+
 		public Quaternion GetRotation()
 		{
 			return transform.rotation;
