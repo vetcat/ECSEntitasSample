@@ -9,24 +9,26 @@
 public static class GameComponentsLookup {
 
     public const int DeltaTime = 0;
-    public const int Health = 1;
-    public const int Player = 2;
-    public const int PlayerView = 3;
-    public const int Position = 4;
-    public const int Rotation = 5;
-    public const int Shooting = 6;
-    public const int Shot = 7;
-    public const int ShotView = 8;
-    public const int View = 9;
-    public const int GameSettings = 10;
-    public const int HealthListener = 11;
-    public const int PositionListener = 12;
-    public const int RotationListener = 13;
+    public const int Destroy = 1;
+    public const int Health = 2;
+    public const int Player = 3;
+    public const int PlayerView = 4;
+    public const int Position = 5;
+    public const int Rotation = 6;
+    public const int Shooting = 7;
+    public const int Shot = 8;
+    public const int ShotView = 9;
+    public const int View = 10;
+    public const int GameSettings = 11;
+    public const int HealthListener = 12;
+    public const int PositionListener = 13;
+    public const int RotationListener = 14;
 
-    public const int TotalComponents = 14;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
         "DeltaTime",
+        "Destroy",
         "Health",
         "Player",
         "PlayerView",
@@ -44,6 +46,7 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(Game.Components.DeltaTimeComponent),
+        typeof(Game.Components.DestroyComponent),
         typeof(Game.Components.HealthComponent),
         typeof(Game.Components.PlayerComponent),
         typeof(Game.Components.PlayerViewComponent),

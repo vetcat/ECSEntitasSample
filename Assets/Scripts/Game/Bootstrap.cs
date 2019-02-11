@@ -33,7 +33,8 @@ namespace Game
 				
 				Add(new ShotsMoveSystem(_context.game)).
 				
-				Add(new GameEventSystems(_context));
+				Add(new GameEventSystems(_context)).
+				Add(new DestroyReactiveSystem(_context.game));
 			
 			_systems.Initialize();
 		}

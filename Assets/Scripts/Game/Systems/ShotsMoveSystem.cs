@@ -27,8 +27,7 @@ namespace Game.Systems
 
                 if (shotView.Elapsed >= shotView.LifeTime)
                 {
-                    //_signalBus.Fire(new SignalShotDestroy(view));
-                    //Debug.Log("need destroy");
+                    entity.isDestroy = true;
                 }
                 else
                 {
@@ -39,9 +38,9 @@ namespace Game.Systems
                     
                     if (Physics.Raycast(entity.position.Value, forward, out _hit, distance))
                     {                                        
-//                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));
-//                        _signalBus.Fire(new SignalShotDestroy(view));
+//                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));                      
                         //Debug.Log("need destroy and create FX");
+                        entity.isDestroy = true;
                     }
                     else
                     {

@@ -1,7 +1,6 @@
 using Entitas;
 using Game;
 using Game.Systems;
-using Input;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -57,5 +56,8 @@ public class PlayerRotationSystemTest
 		_systems.Execute();
 		
 		Assert.AreEqual(calculateRotation, _player.playerView.Value.transform.eulerAngles.y);
+		
+		var quaternion = Quaternion.Euler(new Vector3(0f, calculateRotation, 0f));
+		Assert.AreEqual(quaternion, _player.rotation.Value);
 	}
 }
