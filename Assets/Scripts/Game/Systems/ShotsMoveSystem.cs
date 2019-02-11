@@ -12,7 +12,8 @@ namespace Game.Systems
         public ShotsMoveSystem(GameContext gameContext)
         {
             _gameContext = gameContext;
-            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.ShotView));
+            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.ShotView, 
+                GameMatcher.Position, GameMatcher.Rotation));
         }
 
         public void Execute()
@@ -22,7 +23,6 @@ namespace Game.Systems
             foreach (var entity in _group)
             {
                 var shotView = entity.shotView.Value;
-                var view = entity.view.Value;
                 shotView.Elapsed += deltaTime;                        
 
                 if (shotView.Elapsed >= shotView.LifeTime)
@@ -32,11 +32,12 @@ namespace Game.Systems
                 }
                 else
                 {
-                    var velocity = view.GetForward() * shotView.Speed * deltaTime;                    
-                    var nextPosition = view.GetPosition() + velocity;
-                    var distance = Vector3.Distance(view.GetPosition(), nextPosition);                                                                                
-                                
-                    if (Physics.Raycast(view.GetPosition(), view.GetForward(), out _hit, distance))
+                    var forward = entity.rotation.Value * Vector3.forward;
+                    var velocity =  forward * shotView.Speed * deltaTime;                 
+                    var nextPosition = entity.position.Value + velocity;                                                                                                    
+                    var distance = Vector3.Distance(entity.position.Value, nextPosition);
+                    
+                    if (Physics.Raycast(entity.position.Value, forward, out _hit, distance))
                     {                                        
 //                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));
 //                        _signalBus.Fire(new SignalShotDestroy(view));

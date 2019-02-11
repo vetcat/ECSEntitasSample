@@ -37,7 +37,7 @@ namespace Game.Systems
 				var link = player.GetComponent<ILinkable>();
 				link.Link(_contexts.game, entity);
 
-				var view = player.GetComponent<IPlayerView>();
+				var view = player.GetComponent<PlayerView>();
 				entity.AddPlayerView(view);
 				
 				entity.ReplacePosition(entity.position.Value);

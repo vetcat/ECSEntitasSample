@@ -33,20 +33,20 @@ public class PlayerRotationSystemTest
 			.Add(_playerRotationSystem)
 			.Add(_gameEventSystems);	
 		
-		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Vector3.zero);
+		_player = (GameEntity)EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Quaternion.identity);
 		_systems.Execute();
 	}
 
 	[Test]
 	public void Player_StartRotation_EqualZero()
 	{
-		Assert.AreEqual(Vector3.zero, _player.rotation.Value);
+		Assert.AreEqual(Quaternion.identity, _player.rotation.Value);
 	}
 
 	[Test]
 	public void Player_HorizontalInput_EqualCalculateRotation()
 	{
-		_player.rotation.Value = Vector3.zero;
+		_player.rotation.Value = Quaternion.identity;
 		var deltaTime = 1f;
 		_context.game.deltaTime.Value = deltaTime;
 		var horizontalInput = 1f;
@@ -56,6 +56,6 @@ public class PlayerRotationSystemTest
 		
 		_systems.Execute();
 		
-		Assert.AreEqual(new Vector3(0f, calculateRotation , 0f), _player.rotation.Value);
+		Assert.AreEqual(calculateRotation, _player.playerView.Value.transform.eulerAngles.y);
 	}
 }

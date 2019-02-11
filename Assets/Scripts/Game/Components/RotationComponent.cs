@@ -7,6 +7,6 @@ namespace Game.Components
     [Game, Event(true)]
     public class RotationComponent : IComponent
     {
-        public Vector3 Value;
+        public Quaternion Value;
     }
 }

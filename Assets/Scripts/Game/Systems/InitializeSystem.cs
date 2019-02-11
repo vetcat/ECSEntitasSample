@@ -16,8 +16,8 @@ namespace Game.Systems
 		{
 			Debug.Log("[InitializeSystem] Initialize");
 			var position = Vector3.zero;
-			var forward = Vector3.zero;
-			EntitiesFactory.CreatePlayer(_contexts.game, position, forward);			
+			var rotation = Quaternion.identity;
+			EntitiesFactory.CreatePlayer(_contexts.game, position, rotation);			
 		}
 	}
 }

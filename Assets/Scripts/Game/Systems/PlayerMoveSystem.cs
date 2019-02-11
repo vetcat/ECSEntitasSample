@@ -23,10 +23,8 @@ namespace Game.Systems
 			{				
 				var direction = entity.playerView.Value.TransformDirection(new Vector3(0f, 0f, _inputContext.inputState.Vertical));				
 				var speed = _gameContext.gameSettings.value.PlayerMoveSpeed;
-				entity.playerView.Value.SimpleMove(direction * speed);
-				entity.position.Value = entity.playerView.Value.GetPosition();
-				//var pos = entity.position.Value + Vector3.forward * _gameContext.deltaTime.Value * speed;				
-				//entity.ReplacePosition(pos);
+				var nextPosition = entity.playerView.Value.SimpleMove(direction * speed);
+				entity.ReplacePosition(nextPosition);
 			}
 		}
 	}

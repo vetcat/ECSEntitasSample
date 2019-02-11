@@ -1,5 +1,4 @@
 using Entitas;
-using UnityEngine;
 
 namespace Game.Systems
 {
@@ -13,28 +12,29 @@ namespace Game.Systems
         {
             _inputContext = inputContext;
             _gameContext = gameContext;
-            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shooting, GameMatcher.Player));
+            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shooting, GameMatcher.Player, 
+                GameMatcher.Position, GameMatcher.Rotation));
         }
 
         public void Execute()
         {
             var deltaTime = _gameContext.deltaTime.Value;
-            float fireRate = 1f;
+            var fireRate = 1f;
             
             foreach (var entity in _group)
             {
                 if (_inputContext.inputState.IsFireProcess)
                 {
                     if (entity.shooting.IsFirstTimeShot)
-                    {
-                        CreateShot(entity, _gameContext);
+                    {                        
+                        EntitiesFactory.CreateShot(_gameContext, entity.position.Value, entity.rotation.Value);
                         entity.ReplaceShooting(0f, false);                        
                     }
 
                     entity.shooting.DurationTime += deltaTime;
                     if (entity.shooting.DurationTime >= fireRate)
-                    {
-                        CreateShot(entity, _gameContext);
+                    {                        
+                        EntitiesFactory.CreateShot(_gameContext, entity.position.Value, entity.rotation.Value);
                         entity.shooting.DurationTime -= fireRate;
                     }
                 }
@@ -47,13 +47,6 @@ namespace Game.Systems
                         entity.shooting.IsFirstTimeShot = true;
                 }
             }
-        }
-
-        private void CreateShot(GameEntity entity, GameContext gameContext)
-        {
-            var firePoint = entity.playerView.Value.GetPosition();
-            var fireForward = entity.playerView.Value.GetForward();            
-            EntitiesFactory.CreateShot(gameContext, firePoint, fireForward);         
         }
     }
 }

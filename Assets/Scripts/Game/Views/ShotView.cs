@@ -31,34 +31,9 @@ namespace Game.Views
             transform.position = value;
         }
 		
-        public void OnRotation(GameEntity entity, Vector3 value)
+        public void OnRotation(GameEntity entity, Quaternion value)
         {			
-            transform.Rotate(value);			
-        }
-
-        public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
-
-        public void SetPosition(Vector3 position)
-        {
-            transform.position = position;
-        }
-
-        public Quaternion GetRotation()
-        {
-            return transform.rotation;
-        }
-
-        public Vector3 GetForward()
-        {
-            return transform.forward;
-        }
-
-        public void SetForward(Vector3 forward)
-        {
-            transform.forward = forward;
+            transform.rotation = value;			
         }
     }
 }
