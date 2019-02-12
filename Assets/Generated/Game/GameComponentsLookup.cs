@@ -10,25 +10,29 @@ public static class GameComponentsLookup {
 
     public const int DeltaTime = 0;
     public const int Destroy = 1;
-    public const int Health = 2;
-    public const int Player = 3;
-    public const int PlayerView = 4;
-    public const int Position = 5;
-    public const int Rotation = 6;
-    public const int Shooting = 7;
-    public const int Shot = 8;
-    public const int ShotView = 9;
-    public const int View = 10;
-    public const int GameSettings = 11;
-    public const int HealthListener = 12;
-    public const int PositionListener = 13;
-    public const int RotationListener = 14;
+    public const int ElapsedTime = 2;
+    public const int Health = 3;
+    public const int Player = 4;
+    public const int PlayerView = 5;
+    public const int Position = 6;
+    public const int Rotation = 7;
+    public const int Shooting = 8;
+    public const int Shot = 9;
+    public const int ShotView = 10;
+    public const int Speed = 11;
+    public const int SpeedRotation = 12;
+    public const int View = 13;
+    public const int GameSettings = 14;
+    public const int HealthListener = 15;
+    public const int PositionListener = 16;
+    public const int RotationListener = 17;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 18;
 
     public static readonly string[] componentNames = {
         "DeltaTime",
         "Destroy",
+        "ElapsedTime",
         "Health",
         "Player",
         "PlayerView",
@@ -37,6 +41,8 @@ public static class GameComponentsLookup {
         "Shooting",
         "Shot",
         "ShotView",
+        "Speed",
+        "SpeedRotation",
         "View",
         "GameSettings",
         "HealthListener",
@@ -47,6 +53,7 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Game.Components.DeltaTimeComponent),
         typeof(Game.Components.DestroyComponent),
+        typeof(Game.Components.ElapsedTimeComponent),
         typeof(Game.Components.HealthComponent),
         typeof(Game.Components.PlayerComponent),
         typeof(Game.Components.PlayerViewComponent),
@@ -55,6 +62,8 @@ public static class GameComponentsLookup {
         typeof(Game.Components.ShootingComponent),
         typeof(Game.Components.ShotComponent),
         typeof(Game.Components.ShotViewComponent),
+        typeof(Game.Components.SpeedComponent),
+        typeof(Game.Components.SpeedRotationComponent),
         typeof(Game.Components.ViewComponent),
         typeof(GameSettingsComponent),
         typeof(HealthListenerComponent),

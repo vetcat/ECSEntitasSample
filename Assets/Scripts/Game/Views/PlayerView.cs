@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Views
 {
-	public class PlayerView : MonoBehaviour, IView, ILinkable, IPositionListener, IRotationListener
+	public class PlayerView : MonoBehaviour, IView, IPlayerView, ILinkable, IPositionListener, IRotationListener
 	{
 		private CharacterController _characterController;
 		private void Awake()
@@ -36,21 +36,10 @@ namespace Game.Views
 			transform.rotation = value;
 		}
 
-		public Vector3 TransformDirection(Vector3 dir)
-		{
-			return transform.TransformDirection(dir);
-		}
-
 		public Vector3 SimpleMove(Vector3 velocity)
 		{
 			_characterController.SimpleMove(velocity);
 			return transform.position;
-		}
-
-		public Quaternion Rotate(Vector3 dir)
-		{
-			transform.Rotate(dir);
-			return transform.rotation;
 		}
 	}
 }

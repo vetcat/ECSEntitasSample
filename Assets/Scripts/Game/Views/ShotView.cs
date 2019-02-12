@@ -9,8 +9,6 @@ namespace Game.Views
         public float Speed = 10f;
         public float LifeTime = 2f;
         public int Damage = 20;
-        [HideInInspector] 
-        public float Elapsed;
 
         public void Link(IContext context, IEntity entity)
         {

@@ -23,9 +23,10 @@ namespace Game.Systems
             foreach (var entity in _group)
             {
                 var shotView = entity.shotView.Value;
-                shotView.Elapsed += deltaTime;                        
+                //shotView.Elapsed += deltaTime;
+                entity.elapsedTime.Value += deltaTime;                
 
-                if (shotView.Elapsed >= shotView.LifeTime)
+                if (entity.elapsedTime.Value >= shotView.LifeTime)
                 {
                     entity.isDestroy = true;
                 }

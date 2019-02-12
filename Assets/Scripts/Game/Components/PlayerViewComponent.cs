@@ -5,6 +5,6 @@ namespace Game.Components
 {
 	public class PlayerViewComponent : IComponent
 	{
-		public PlayerView Value;
+		public IPlayerView Value;
 	}
 }

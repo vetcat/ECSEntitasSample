@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Game.Components.PlayerViewComponent playerView { get { return (Game.Components.PlayerViewComponent)GetComponent(GameComponentsLookup.PlayerView); } }
-    public bool hasPlayerView { get { return HasComponent(GameComponentsLookup.PlayerView); } }
+    public Game.Components.ElapsedTimeComponent elapsedTime { get { return (Game.Components.ElapsedTimeComponent)GetComponent(GameComponentsLookup.ElapsedTime); } }
+    public bool hasElapsedTime { get { return HasComponent(GameComponentsLookup.ElapsedTime); } }
 
-    public void AddPlayerView(Game.Views.IPlayerView newValue) {
-        var index = GameComponentsLookup.PlayerView;
-        var component = CreateComponent<Game.Components.PlayerViewComponent>(index);
+    public void AddElapsedTime(float newValue) {
+        var index = GameComponentsLookup.ElapsedTime;
+        var component = CreateComponent<Game.Components.ElapsedTimeComponent>(index);
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayerView(Game.Views.IPlayerView newValue) {
-        var index = GameComponentsLookup.PlayerView;
-        var component = CreateComponent<Game.Components.PlayerViewComponent>(index);
+    public void ReplaceElapsedTime(float newValue) {
+        var index = GameComponentsLookup.ElapsedTime;
+        var component = CreateComponent<Game.Components.ElapsedTimeComponent>(index);
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemovePlayerView() {
-        RemoveComponent(GameComponentsLookup.PlayerView);
+    public void RemoveElapsedTime() {
+        RemoveComponent(GameComponentsLookup.ElapsedTime);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherPlayerView;
+    static Entitas.IMatcher<GameEntity> _matcherElapsedTime;
 
-    public static Entitas.IMatcher<GameEntity> PlayerView {
+    public static Entitas.IMatcher<GameEntity> ElapsedTime {
         get {
-            if (_matcherPlayerView == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.PlayerView);
+            if (_matcherElapsedTime == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ElapsedTime);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherPlayerView = matcher;
+                _matcherElapsedTime = matcher;
             }
 
-            return _matcherPlayerView;
+            return _matcherElapsedTime;
         }
     }
 }

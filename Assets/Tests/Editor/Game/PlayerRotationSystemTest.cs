@@ -49,15 +49,12 @@ public class PlayerRotationSystemTest
 		var deltaTime = 1f;
 		_context.game.deltaTime.Value = deltaTime;
 		var horizontalInput = 1f;
-		_context.input.ReplaceInputState(horizontalInput, 0f, false, false, false);
-		var speed = _context.game.gameSettings.value.PlayerRotationSpeed;
-		var calculateRotation = _context.input.inputState.Horizontal * speed * deltaTime; 
+		_context.input.ReplaceInputState(horizontalInput, 0f, false, false, false);		
+		var calculateRotation = _context.input.inputState.Horizontal * _player.speedRotation.Value * deltaTime; 
 		
-		_systems.Execute();
+		_systems.Execute();				
 		
-		Assert.AreEqual(calculateRotation, _player.playerView.Value.transform.eulerAngles.y);
-		
-		var quaternion = Quaternion.Euler(new Vector3(0f, calculateRotation, 0f));
+		var quaternion = Quaternion.Euler(new Vector3(0f, calculateRotation, 0f));		
 		Assert.AreEqual(quaternion, _player.rotation.Value);
 	}
 }
