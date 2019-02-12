@@ -1,5 +1,6 @@
 using Entitas;
 using Game;
+using Game.Settings;
 using Game.Systems;
 using NUnit.Framework;
 using UnityEngine;

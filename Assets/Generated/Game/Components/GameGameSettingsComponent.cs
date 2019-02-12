@@ -12,7 +12,7 @@ public partial class GameContext {
     public GameSettingsComponent gameSettings { get { return gameSettingsEntity.gameSettings; } }
     public bool hasGameSettings { get { return gameSettingsEntity != null; } }
 
-    public GameEntity SetGameSettings(Game.GameSettings newValue) {
+    public GameEntity SetGameSettings(Game.Settings.GameSettings newValue) {
         if (hasGameSettings) {
             throw new Entitas.EntitasException("Could not set GameSettings!\n" + this + " already has an entity with GameSettingsComponent!",
                 "You should check if the context already has a gameSettingsEntity before setting it or use context.ReplaceGameSettings().");
@@ -22,7 +22,7 @@ public partial class GameContext {
         return entity;
     }
 
-    public void ReplaceGameSettings(Game.GameSettings newValue) {
+    public void ReplaceGameSettings(Game.Settings.GameSettings newValue) {
         var entity = gameSettingsEntity;
         if (entity == null) {
             entity = SetGameSettings(newValue);
@@ -49,14 +49,14 @@ public partial class GameEntity {
     public GameSettingsComponent gameSettings { get { return (GameSettingsComponent)GetComponent(GameComponentsLookup.GameSettings); } }
     public bool hasGameSettings { get { return HasComponent(GameComponentsLookup.GameSettings); } }
 
-    public void AddGameSettings(Game.GameSettings newValue) {
+    public void AddGameSettings(Game.Settings.GameSettings newValue) {
         var index = GameComponentsLookup.GameSettings;
         var component = CreateComponent<GameSettingsComponent>(index);
         component.value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceGameSettings(Game.GameSettings newValue) {
+    public void ReplaceGameSettings(Game.Settings.GameSettings newValue) {
         var index = GameComponentsLookup.GameSettings;
         var component = CreateComponent<GameSettingsComponent>(index);
         component.value = newValue;

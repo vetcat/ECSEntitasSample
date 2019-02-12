@@ -7,6 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [Entitas.CodeGeneration.Attributes.DontGenerate(false)]
-public sealed class GameSettingsComponent : Entitas.IComponent {
-    public Game.Settings.GameSettings value;
+public sealed class ShotSettingsComponent : Entitas.IComponent {
+    public Game.Settings.ShotSettings value;
 }

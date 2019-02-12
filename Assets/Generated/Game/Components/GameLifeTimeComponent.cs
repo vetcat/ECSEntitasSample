@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Game.Components.ShotViewComponent shotView { get { return (Game.Components.ShotViewComponent)GetComponent(GameComponentsLookup.ShotView); } }
-    public bool hasShotView { get { return HasComponent(GameComponentsLookup.ShotView); } }
+    public Game.Components.LifeTimeComponent lifeTime { get { return (Game.Components.LifeTimeComponent)GetComponent(GameComponentsLookup.LifeTime); } }
+    public bool hasLifeTime { get { return HasComponent(GameComponentsLookup.LifeTime); } }
 
-    public void AddShotView(Game.Views.ShotView newValue) {
-        var index = GameComponentsLookup.ShotView;
-        var component = CreateComponent<Game.Components.ShotViewComponent>(index);
+    public void AddLifeTime(float newValue) {
+        var index = GameComponentsLookup.LifeTime;
+        var component = CreateComponent<Game.Components.LifeTimeComponent>(index);
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceShotView(Game.Views.ShotView newValue) {
-        var index = GameComponentsLookup.ShotView;
-        var component = CreateComponent<Game.Components.ShotViewComponent>(index);
+    public void ReplaceLifeTime(float newValue) {
+        var index = GameComponentsLookup.LifeTime;
+        var component = CreateComponent<Game.Components.LifeTimeComponent>(index);
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveShotView() {
-        RemoveComponent(GameComponentsLookup.ShotView);
+    public void RemoveLifeTime() {
+        RemoveComponent(GameComponentsLookup.LifeTime);
     }
 }
 
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherShotView;
+    static Entitas.IMatcher<GameEntity> _matcherLifeTime;
 
-    public static Entitas.IMatcher<GameEntity> ShotView {
+    public static Entitas.IMatcher<GameEntity> LifeTime {
         get {
-            if (_matcherShotView == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ShotView);
+            if (_matcherLifeTime == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.LifeTime);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherShotView = matcher;
+                _matcherLifeTime = matcher;
             }
 
-            return _matcherShotView;
+            return _matcherLifeTime;
         }
     }
 }

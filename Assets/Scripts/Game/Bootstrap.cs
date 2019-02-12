@@ -1,3 +1,4 @@
+using Game.Settings;
 using UnityEngine;
 using Game.Systems;
 using Input;

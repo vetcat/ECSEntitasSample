@@ -8,66 +8,72 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int DeltaTime = 0;
-    public const int Destroy = 1;
-    public const int ElapsedTime = 2;
-    public const int Health = 3;
-    public const int Player = 4;
-    public const int PlayerView = 5;
-    public const int Position = 6;
-    public const int Rotation = 7;
-    public const int Shooting = 8;
-    public const int Shot = 9;
-    public const int ShotView = 10;
-    public const int Speed = 11;
-    public const int SpeedRotation = 12;
-    public const int View = 13;
-    public const int GameSettings = 14;
-    public const int HealthListener = 15;
-    public const int PositionListener = 16;
-    public const int RotationListener = 17;
+    public const int Damage = 0;
+    public const int DeltaTime = 1;
+    public const int Destroy = 2;
+    public const int ElapsedTime = 3;
+    public const int Health = 4;
+    public const int LifeTime = 5;
+    public const int Player = 6;
+    public const int PlayerView = 7;
+    public const int Position = 8;
+    public const int Rotation = 9;
+    public const int Shooting = 10;
+    public const int Shot = 11;
+    public const int Speed = 12;
+    public const int SpeedRotation = 13;
+    public const int View = 14;
+    public const int GameSettings = 15;
+    public const int HealthListener = 16;
+    public const int PositionListener = 17;
+    public const int RotationListener = 18;
+    public const int ShotSettings = 19;
 
-    public const int TotalComponents = 18;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
+        "Damage",
         "DeltaTime",
         "Destroy",
         "ElapsedTime",
         "Health",
+        "LifeTime",
         "Player",
         "PlayerView",
         "Position",
         "Rotation",
         "Shooting",
         "Shot",
-        "ShotView",
         "Speed",
         "SpeedRotation",
         "View",
         "GameSettings",
         "HealthListener",
         "PositionListener",
-        "RotationListener"
+        "RotationListener",
+        "ShotSettings"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Game.Components.DamageComponent),
         typeof(Game.Components.DeltaTimeComponent),
         typeof(Game.Components.DestroyComponent),
         typeof(Game.Components.ElapsedTimeComponent),
         typeof(Game.Components.HealthComponent),
+        typeof(Game.Components.LifeTimeComponent),
         typeof(Game.Components.PlayerComponent),
         typeof(Game.Components.PlayerViewComponent),
         typeof(Game.Components.PositionComponent),
         typeof(Game.Components.RotationComponent),
         typeof(Game.Components.ShootingComponent),
         typeof(Game.Components.ShotComponent),
-        typeof(Game.Components.ShotViewComponent),
         typeof(Game.Components.SpeedComponent),
         typeof(Game.Components.SpeedRotationComponent),
         typeof(Game.Components.ViewComponent),
         typeof(GameSettingsComponent),
         typeof(HealthListenerComponent),
         typeof(PositionListenerComponent),
-        typeof(RotationListenerComponent)
+        typeof(RotationListenerComponent),
+        typeof(ShotSettingsComponent)
     };
 }

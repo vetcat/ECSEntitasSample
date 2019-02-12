@@ -1,15 +1,14 @@
 using Entitas;
 using Entitas.Unity;
+using Game.Settings;
 using UnityEngine;
 
 namespace Game.Views
 {
-    public class ShotView : MonoBehaviour, IView, ILinkable, IPositionListener, IRotationListener
+    public class ShotView : MonoBehaviour, IShotView, IView, ILinkable, IPositionListener, IRotationListener
     {
-        public float Speed = 10f;
-        public float LifeTime = 2f;
-        public int Damage = 20;
-
+        public ShotSettings Settings;        
+        
         public void Link(IContext context, IEntity entity)
         {
             gameObject.Link(entity, context);
@@ -32,6 +31,11 @@ namespace Game.Views
         public void OnRotation(GameEntity entity, Quaternion value)
         {			
             transform.rotation = value;			
+        }
+
+        public ShotSettings GetSettings()
+        {
+            return Settings;
         }
     }
 }

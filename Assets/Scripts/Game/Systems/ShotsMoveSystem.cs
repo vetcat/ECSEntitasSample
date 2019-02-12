@@ -12,8 +12,8 @@ namespace Game.Systems
         public ShotsMoveSystem(GameContext gameContext)
         {
             _gameContext = gameContext;
-            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.ShotView, 
-                GameMatcher.Position, GameMatcher.Rotation));
+            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.Position, 
+                GameMatcher.Rotation, GameMatcher.Speed, GameMatcher.LifeTime));
         }
 
         public void Execute()
@@ -21,19 +21,17 @@ namespace Game.Systems
             var deltaTime = _gameContext.deltaTime.Value;
 
             foreach (var entity in _group)
-            {
-                var shotView = entity.shotView.Value;
-                //shotView.Elapsed += deltaTime;
+            {                                
                 entity.elapsedTime.Value += deltaTime;                
 
-                if (entity.elapsedTime.Value >= shotView.LifeTime)
+                if (entity.elapsedTime.Value >= entity.lifeTime.Value)
                 {
                     entity.isDestroy = true;
                 }
                 else
                 {
                     var forward = entity.rotation.Value * Vector3.forward;
-                    var velocity =  forward * shotView.Speed * deltaTime;                 
+                    var velocity =  forward * entity.speed.Value * deltaTime;                 
                     var nextPosition = entity.position.Value + velocity;                                                                                                    
                     var distance = Vector3.Distance(entity.position.Value, nextPosition);
                     
