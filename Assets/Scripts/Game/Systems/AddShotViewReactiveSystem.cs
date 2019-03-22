@@ -27,12 +27,12 @@ namespace Game.Systems
         protected override void Execute(List<GameEntity> entities)
         {
             //todo перевести на pool
-            var prefab = _contexts.game.gameSettings.value.ShotPrefab;            
+            var prefab = _contexts.game.gameSettings.value.ShotPrefab;
 
             foreach (var entity in entities)
             {
                 var shot = GameObject.Instantiate(prefab);
-				
+
                 var link = shot.GetComponent<ILinkable>();
                 link.Link(_contexts.game, entity);
 
@@ -41,11 +41,11 @@ namespace Game.Systems
 
                 var shotView = shot.GetComponent<IShotView>();
                 var settings = shotView.GetSettings();
-                
+
                 entity.AddSpeed(settings.Speed);
                 entity.AddLifeTime(settings.LifeTime);
                 entity.AddDamage(settings.Damage);
-                
+
                 entity.ReplacePosition(entity.position.Value);
                 entity.ReplaceRotation(entity.rotation.Value);
             }

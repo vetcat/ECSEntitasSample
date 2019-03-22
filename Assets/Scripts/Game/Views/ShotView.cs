@@ -7,8 +7,8 @@ namespace Game.Views
 {
     public class ShotView : MonoBehaviour, IShotView, IView, ILinkable, IPositionListener, IRotationListener
     {
-        public ShotSettings Settings;        
-        
+        public ShotSettings Settings;
+
         public void Link(IContext context, IEntity entity)
         {
             gameObject.Link(entity, context);
@@ -27,10 +27,10 @@ namespace Game.Views
         {
             transform.position = value;
         }
-		
+
         public void OnRotation(GameEntity entity, Quaternion value)
-        {			
-            transform.rotation = value;			
+        {
+            transform.rotation = value;
         }
 
         public ShotSettings GetSettings()

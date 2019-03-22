@@ -12,7 +12,7 @@ namespace Game.Systems
         {
             _inputContext = inputContext;
             _gameContext = gameContext;
-            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shooting, GameMatcher.Player, 
+            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shooting, GameMatcher.Player,
                 GameMatcher.Position, GameMatcher.Rotation));
         }
 
@@ -20,20 +20,20 @@ namespace Game.Systems
         {
             var deltaTime = _gameContext.deltaTime.Value;
             var fireRate = 1f;
-            
+
             foreach (var entity in _group)
             {
                 if (_inputContext.inputState.IsFireProcess)
                 {
                     if (entity.shooting.IsFirstTimeShot)
-                    {                        
+                    {
                         EntitiesFactory.CreateShot(_gameContext, entity.position.Value, entity.rotation.Value);
-                        entity.ReplaceShooting(0f, false);                        
+                        entity.ReplaceShooting(0f, false);
                     }
 
                     entity.shooting.DurationTime += deltaTime;
                     if (entity.shooting.DurationTime >= fireRate)
-                    {                        
+                    {
                         EntitiesFactory.CreateShot(_gameContext, entity.position.Value, entity.rotation.Value);
                         entity.shooting.DurationTime -= fireRate;
                     }
@@ -42,7 +42,7 @@ namespace Game.Systems
                 {
                     if (entity.shooting.DurationTime < fireRate)
                         entity.shooting.DurationTime += deltaTime;
-                    
+
                     if (!entity.shooting.IsFirstTimeShot && entity.shooting.DurationTime > fireRate)
                         entity.shooting.IsFirstTimeShot = true;
                 }

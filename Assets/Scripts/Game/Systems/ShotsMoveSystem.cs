@@ -12,7 +12,7 @@ namespace Game.Systems
         public ShotsMoveSystem(GameContext gameContext)
         {
             _gameContext = gameContext;
-            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.Position, 
+            _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.Position,
                 GameMatcher.Rotation, GameMatcher.Speed, GameMatcher.LifeTime));
         }
 
@@ -21,8 +21,8 @@ namespace Game.Systems
             var deltaTime = _gameContext.deltaTime.Value;
 
             foreach (var entity in _group)
-            {                                
-                entity.elapsedTime.Value += deltaTime;                
+            {
+                entity.elapsedTime.Value += deltaTime;
 
                 if (entity.elapsedTime.Value >= entity.lifeTime.Value)
                 {
@@ -31,19 +31,19 @@ namespace Game.Systems
                 else
                 {
                     var forward = entity.rotation.Value * Vector3.forward;
-                    var velocity =  forward * entity.speed.Value * deltaTime;                 
-                    var nextPosition = entity.position.Value + velocity;                                                                                                    
+                    var velocity = forward * entity.speed.Value * deltaTime;
+                    var nextPosition = entity.position.Value + velocity;
                     var distance = Vector3.Distance(entity.position.Value, nextPosition);
-                    
+
                     if (Physics.Raycast(entity.position.Value, forward, out _hit, distance))
-                    {                                        
+                    {
 //                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));                      
                         //Debug.Log("need destroy and create FX");
                         entity.isDestroy = true;
                     }
                     else
                     {
-                        entity.ReplacePosition(nextPosition);            
+                        entity.ReplacePosition(nextPosition);
                     }
                 }
             }

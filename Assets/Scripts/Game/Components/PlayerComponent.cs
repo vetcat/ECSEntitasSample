@@ -2,9 +2,8 @@ using Entitas;
 
 namespace Game.Components
 {
-	[Game]
-	public class PlayerComponent : IComponent
-	{
-		
-	}
+    [Game]
+    public class PlayerComponent : IComponent
+    {
+    }
 }

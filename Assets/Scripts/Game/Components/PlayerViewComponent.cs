@@ -3,8 +3,8 @@ using Game.Views;
 
 namespace Game.Components
 {
-	public class PlayerViewComponent : IComponent
-	{
-		public IPlayerView Value;
-	}
+    public class PlayerViewComponent : IComponent
+    {
+        public IPlayerView Value;
+    }
 }
