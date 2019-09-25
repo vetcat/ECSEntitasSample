@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using Entitas;
+using Prototype.Scripts;
 
 namespace Game.Systems
 {
-    public class DestroyReactiveSystem : ReactiveSystem<GameEntity>
+    public class DestroyReactiveSystem : ReactiveSystem<GameEntity>, IPrioritySystem
     {
+        public int Priority { get; }
         private GameContext _context;
 
-        public DestroyReactiveSystem(GameContext context) : base(context)
+        public DestroyReactiveSystem(int priority, GameContext context) : base(context)
         {
+            Priority = priority;
             _context = context;
         }
 
@@ -26,9 +29,6 @@ namespace Game.Systems
         {
             foreach (var entity in entities)
             {
-                if (entity.hasView)
-                    entity.view.Value.Destroy();
-
                 entity.Destroy();
             }
         }

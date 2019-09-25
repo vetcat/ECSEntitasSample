@@ -1,15 +1,18 @@
 using Entitas;
+using Prototype.Scripts;
 
 namespace Game.Systems
 {
-    public class PlayerShootingSystem : IExecuteSystem
+    public class PlayerShootingSystem : IExecuteSystem, IPrioritySystem
     {
+        public int Priority { get; }
         private readonly IGroup<GameEntity> _group;
-        private GameContext _gameContext;
-        private InputContext _inputContext;
+        private readonly GameContext _gameContext;
+        private readonly InputContext _inputContext;
 
-        public PlayerShootingSystem(GameContext gameContext, InputContext inputContext)
+        public PlayerShootingSystem(int priority, GameContext gameContext, InputContext inputContext)
         {
+            Priority = priority;
             _inputContext = inputContext;
             _gameContext = gameContext;
             _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shooting, GameMatcher.Player,

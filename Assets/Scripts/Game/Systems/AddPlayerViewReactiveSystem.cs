@@ -1,18 +1,21 @@
 using System.Collections.Generic;
 using Entitas;
-using Entitas.Unity;
 using Game.Views;
+using Prototype.Scripts;
 using UnityEngine;
+using Views.Linkable;
 
 namespace Game.Systems
 {
-    public class AddPlayerViewReactiveSystem : ReactiveSystem<GameEntity>
+    public class AddPlayerViewReactiveSystem : ReactiveSystem<GameEntity>, IPrioritySystem
     {
-        private Contexts _contexts;
+        public int Priority { get; }
+        private readonly GameContext _gameContext;
 
-        public AddPlayerViewReactiveSystem(Contexts contexts) : base(contexts.game)
+        public AddPlayerViewReactiveSystem(int priority, GameContext gameContext) : base(gameContext)
         {
-            _contexts = contexts;
+            Priority = priority;
+            _gameContext = gameContext;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -28,14 +31,14 @@ namespace Game.Systems
         protected override void Execute(List<GameEntity> entities)
         {
             //todo перевести на pool
-            var playerPrefab = _contexts.game.gameSettings.value.PlayerPrefab;
+            var playerPrefab = _gameContext.gameSettings.value.PlayerPrefab;
 
             foreach (var entity in entities)
             {
                 var player = GameObject.Instantiate(playerPrefab);
 
                 var link = player.GetComponent<ILinkable>();
-                link.Link(_contexts.game, entity);
+                link.Link(entity, _gameContext);
 
                 var view = player.GetComponent<IPlayerView>();
                 entity.AddPlayerView(view);

@@ -1,16 +1,19 @@
 using Entitas;
+using Prototype.Scripts;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class ShotsMoveSystem : IExecuteSystem
+    public class ShotsMoveSystem : IExecuteSystem, IPrioritySystem
     {
-        private GameContext _gameContext;
+        public int Priority { get; }
+        private readonly GameContext _gameContext;
         private readonly IGroup<GameEntity> _group;
         private RaycastHit _hit;
 
-        public ShotsMoveSystem(GameContext gameContext)
+        public ShotsMoveSystem(int priority, GameContext gameContext)
         {
+            Priority = priority;
             _gameContext = gameContext;
             _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shot, GameMatcher.Position,
                 GameMatcher.Rotation, GameMatcher.Speed, GameMatcher.LifeTime));
@@ -37,7 +40,7 @@ namespace Game.Systems
 
                     if (Physics.Raycast(entity.position.Value, forward, out _hit, distance))
                     {
-//                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));                      
+//                        _signalBus.Fire(new SignalShotFXSpawn(_hit.point, _hit.normal));
                         //Debug.Log("need destroy and create FX");
                         entity.isDestroy = true;
                     }

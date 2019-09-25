@@ -13,7 +13,7 @@ public class DeltaTimeUpdateSystemTest
         _context = new Contexts();
         _context.game.SetDeltaTime(0f);
 
-        _deltaTimeUpdateSystem = new DeltaTimeUpdateSystem(_context.game);
+        _deltaTimeUpdateSystem = new DeltaTimeUpdateSystem(10, _context.game);
         _systems = new Feature("Game").Add(_deltaTimeUpdateSystem);
     }
 

@@ -1,10 +1,10 @@
 using Entitas;
-using Entitas.Unity;
 using UnityEngine;
+using Views.Linkable.Impl;
 
 namespace Game.Views
 {
-    public class PlayerView : MonoBehaviour, IView, IPlayerView, ILinkable, IPositionListener, IRotationListener
+    public class PlayerView : LinkableView, IPlayerView, IRotationListener
     {
         private CharacterController _characterController;
 
@@ -13,23 +13,12 @@ namespace Game.Views
             _characterController = GetComponent<CharacterController>();
         }
 
-        public void Link(IContext context, IEntity entity)
+        public override void Link(IEntity entity, IContext context)
         {
-            gameObject.Link(entity, context);
-            var e = (GameEntity) entity;
-            e.AddPositionListener(this);
+            base.Link(entity, context);
+
+            var e = (GameEntity)entity;
             e.AddRotationListener(this);
-        }
-
-        public void Destroy()
-        {
-            gameObject.Unlink();
-            Destroy(gameObject);
-        }
-
-        public void OnPosition(GameEntity entity, Vector3 value)
-        {
-            transform.position = value;
         }
 
         public void OnRotation(GameEntity entity, Quaternion value)

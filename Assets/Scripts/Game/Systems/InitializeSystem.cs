@@ -1,15 +1,18 @@
 using Entitas;
+using Prototype.Scripts;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class InitializeSystem : IInitializeSystem
+    public class InitializeSystem : IPrioritySystem, IInitializeSystem
     {
-        private readonly Contexts _contexts;
+        public int Priority { get; }
+        private readonly GameContext _gameContext;
 
-        public InitializeSystem(Contexts contexts)
+        public InitializeSystem(int priority, GameContext gameContext)
         {
-            _contexts = contexts;
+            Priority = priority;
+            _gameContext = gameContext;
         }
 
         public void Initialize()
@@ -17,7 +20,7 @@ namespace Game.Systems
             Debug.Log("[InitializeSystem] Initialize");
             var position = Vector3.zero;
             var rotation = Quaternion.identity;
-            EntitiesFactory.CreatePlayer(_contexts.game, position, rotation);
+            EntitiesFactory.CreatePlayer(_gameContext, position, rotation);
         }
     }
 }

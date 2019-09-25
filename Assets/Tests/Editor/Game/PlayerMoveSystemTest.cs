@@ -5,39 +5,41 @@ using Game.Systems;
 using NUnit.Framework;
 using UnityEngine;
 
-public class PlayerMoveSystemTest
+namespace Tests.Editor.Game
 {
-    private Contexts _context;
-    private PlayerMoveSystem _playerMoveSystem;
-    private GameEventSystems _gameEventSystems;
-    private AddPlayerViewReactiveSystem _addPlayerViewReactiveSystem;
-    private Systems _systems;
-    private IEntity _player;
-
-    [SetUp]
-    public void SetUp()
+    public class PlayerMoveSystemTest
     {
-        var settings = Resources.Load("GameSettings") as GameSettings;
+        private Contexts _context;
+        private PlayerMoveSystem _playerMoveSystem;
+        private GameEventSystems _gameEventSystems;
+        private AddPlayerViewReactiveSystem _addPlayerViewReactiveSystem;
+        private Systems _systems;
+        private IEntity _player;
 
-        _context = new Contexts();
-        _context.game.SetDeltaTime(0f);
-        _context.game.SetGameSettings(settings);
+        [SetUp]
+        public void SetUp()
+        {
+            var settings = Resources.Load("GameSettings") as GameSettings;
 
-        _playerMoveSystem = new PlayerMoveSystem(_context.game, _context.input);
-        _gameEventSystems = new GameEventSystems(_context);
-        _addPlayerViewReactiveSystem = new AddPlayerViewReactiveSystem(_context);
+            _context = new Contexts();
+            _context.game.SetDeltaTime(0f);
+            _context.game.SetGameSettings(settings);
 
-        _systems = new Feature("Game")
-            .Add(_addPlayerViewReactiveSystem)
-            .Add(_playerMoveSystem)
-            .Add(_gameEventSystems);
+            _playerMoveSystem = new PlayerMoveSystem(10, _context.game, _context.input);
+            _gameEventSystems = new GameEventSystems(_context);
+            _addPlayerViewReactiveSystem = new AddPlayerViewReactiveSystem(1, _context.game);
 
-        _player = EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Quaternion.identity);
-        _systems.Execute();
-    }
+            _systems = new Feature("Game")
+                .Add(_addPlayerViewReactiveSystem)
+                .Add(_playerMoveSystem)
+                .Add(_gameEventSystems);
 
-    //tod : not for use CharacterController
-    /*
+            _player = EntitiesFactory.CreatePlayer(_context.game, Vector3.zero, Quaternion.identity);
+            _systems.Execute();
+        }
+
+        //tod : not for use CharacterController
+        /*
     [Test]
     public void Move_DeltaTime_Simple()
     {
@@ -67,4 +69,5 @@ public class PlayerMoveSystemTest
         Assert.AreEqual(_player.position.Value, newPosition);
     }
     */
+    }
 }

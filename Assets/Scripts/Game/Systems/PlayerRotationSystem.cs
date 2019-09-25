@@ -1,16 +1,19 @@
 using Entitas;
+using Prototype.Scripts;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class PlayerRotationSystem : IExecuteSystem
+    public class PlayerRotationSystem : IExecuteSystem, IPrioritySystem
     {
+        public int Priority { get; }
         private readonly IGroup<GameEntity> _group;
         private readonly GameContext _gameContext;
-        private InputContext _inputContext;
+        private readonly InputContext _inputContext;
 
-        public PlayerRotationSystem(GameContext gameContext, InputContext inputContext)
+        public PlayerRotationSystem(int priority, GameContext gameContext, InputContext inputContext)
         {
+            Priority = priority;
             _inputContext = inputContext;
             _gameContext = gameContext;
             _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.PlayerView, GameMatcher.Rotation,

@@ -1,17 +1,21 @@
 using System.Collections.Generic;
 using Entitas;
 using Game.Views;
+using Prototype.Scripts;
 using UnityEngine;
+using Views.Linkable;
 
 namespace Game.Systems
 {
-    public class AddShotViewReactiveSystem : ReactiveSystem<GameEntity>
+    public class AddShotViewReactiveSystem : ReactiveSystem<GameEntity>, IPrioritySystem
     {
-        private Contexts _contexts;
+        public int Priority { get; }
+        private readonly GameContext _gameContext;
 
-        public AddShotViewReactiveSystem(Contexts contexts) : base(contexts.game)
+        public AddShotViewReactiveSystem(int priority, GameContext gameContext) : base(gameContext)
         {
-            _contexts = contexts;
+            Priority = priority;
+            _gameContext = gameContext;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -27,17 +31,14 @@ namespace Game.Systems
         protected override void Execute(List<GameEntity> entities)
         {
             //todo перевести на pool
-            var prefab = _contexts.game.gameSettings.value.ShotPrefab;
+            var prefab = _gameContext.gameSettings.value.ShotPrefab;
 
             foreach (var entity in entities)
             {
                 var shot = GameObject.Instantiate(prefab);
 
                 var link = shot.GetComponent<ILinkable>();
-                link.Link(_contexts.game, entity);
-
-                var view = shot.GetComponent<IView>();
-                entity.AddView(view);
+                link.Link(entity, _gameContext);
 
                 var shotView = shot.GetComponent<IShotView>();
                 var settings = shotView.GetSettings();

@@ -1,15 +1,18 @@
 using Entitas;
+using Prototype.Scripts;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class PlayerMoveSystem : IExecuteSystem
+    public class PlayerMoveSystem : IExecuteSystem, IPrioritySystem
     {
+        public int Priority { get; }
         private readonly IGroup<GameEntity> _group;
         private readonly InputContext _inputContext;
 
-        public PlayerMoveSystem(GameContext gameContext, InputContext inputContext)
+        public PlayerMoveSystem(int priority, GameContext gameContext, InputContext inputContext)
         {
+            Priority = priority;
             _inputContext = inputContext;
             _group = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.PlayerView, GameMatcher.Position,
                 GameMatcher.Speed));

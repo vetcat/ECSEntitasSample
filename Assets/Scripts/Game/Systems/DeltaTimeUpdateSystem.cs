@@ -1,14 +1,17 @@
 using Entitas;
+using Prototype.Scripts;
 using UnityEngine;
 
 namespace Game.Systems
 {
-    public class DeltaTimeUpdateSystem : IExecuteSystem
+    public class DeltaTimeUpdateSystem : IExecuteSystem, IPrioritySystem
     {
+        public int Priority { get; }
         private GameContext _context;
 
-        public DeltaTimeUpdateSystem(GameContext context)
+        public DeltaTimeUpdateSystem(int priority, GameContext context)
         {
+            Priority = priority;
             _context = context;
         }
 

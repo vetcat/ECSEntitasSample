@@ -1,26 +1,22 @@
 using Entitas;
-using Entitas.Unity;
 using Game.Settings;
 using UnityEngine;
 
+using Views.Linkable.Impl;
+
 namespace Game.Views
 {
-    public class ShotView : MonoBehaviour, IShotView, IView, ILinkable, IPositionListener, IRotationListener
+    public class ShotView : LinkableView, IShotView, IPositionListener, IRotationListener
     {
         public ShotSettings Settings;
 
-        public void Link(IContext context, IEntity entity)
+        public override void Link(IEntity entity, IContext context)
         {
-            gameObject.Link(entity, context);
-            var e = (GameEntity) entity;
-            e.AddPositionListener(this);
-            e.AddRotationListener(this);
-        }
+            base.Link(entity, context);
 
-        public void Destroy()
-        {
-            gameObject.Unlink();
-            Destroy(gameObject);
+            var e = (GameEntity)entity;
+            e.AddRotationListener(this);
+            e.AddPositionListener(this);
         }
 
         public void OnPosition(GameEntity entity, Vector3 value)

@@ -1,13 +1,17 @@
 using Entitas;
+using Prototype.Scripts;
 
 namespace Input
 {
-    public class InputStateStandartSystem : IExecuteSystem
+    public class InputStateStandartSystem : IExecuteSystem, IPrioritySystem
     {
+        public int Priority { get; }
+
         private InputContext _context;
 
-        public InputStateStandartSystem(InputContext context)
+        public InputStateStandartSystem(int priority, InputContext context)
         {
+            Priority = priority;
             _context = context;
         }
 
